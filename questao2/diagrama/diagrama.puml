@@ -1,0 +1,67 @@
+@startuml
+interface ComprovanteFiscal {
+    +descrever(valor: double): String
+}
+interface Pagamento {
+    +descrever(valor: double): String
+}
+interface TermoPrivacidade {
+    +descrever(): String
+}
+
+interface FabricaPais {
+    +criarComprovante(): ComprovanteFiscal
+    +criarPagamento(): Pagamento
+    +criarTermo(): TermoPrivacidade
+}
+
+class FabricaBrasil
+class FabricaMexico
+
+class NfseBrasil
+class CfdiMexico
+class PixBrasil
+class SpeiMexico
+class TermoLgpd
+class TermoLfpdppp
+
+class Assinatura {
+    -cliente: String
+    -valor: double
+    -comprovante: ComprovanteFiscal
+    -pagamento: Pagamento
+    -termo: TermoPrivacidade
+    +Assinatura(cliente: String, valor: double, fabrica: FabricaPais)
+    +ativar(): void
+}
+
+class Main {
+    +main(args: String[]): void
+}
+
+FabricaPais <|.. FabricaBrasil
+FabricaPais <|.. FabricaMexico
+
+ComprovanteFiscal <|.. NfseBrasil
+ComprovanteFiscal <|.. CfdiMexico
+Pagamento <|.. PixBrasil
+Pagamento <|.. SpeiMexico
+TermoPrivacidade <|.. TermoLgpd
+TermoPrivacidade <|.. TermoLfpdppp
+
+FabricaBrasil ..> NfseBrasil : cria
+FabricaBrasil ..> PixBrasil : cria
+FabricaBrasil ..> TermoLgpd : cria
+FabricaMexico ..> CfdiMexico : cria
+FabricaMexico ..> SpeiMexico : cria
+FabricaMexico ..> TermoLfpdppp : cria
+
+Assinatura --> FabricaPais : usa
+Assinatura --> ComprovanteFiscal
+Assinatura --> Pagamento
+Assinatura --> TermoPrivacidade
+
+Main ..> Assinatura
+Main ..> FabricaBrasil
+Main ..> FabricaMexico
+@enduml
