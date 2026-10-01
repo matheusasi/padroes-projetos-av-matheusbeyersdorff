@@ -1,7 +1,7 @@
 # prova-padroes-de-projeto-1
 
-Nome completo: Matheus Beyersdorff
-Turma: (preencher)
+Nome completo: Matheus Rodrigues Cassab Asinelli Beyersdorff
+Turma: Padrões de Projetos - N1 quinta
 
 ## Questao 1
 Padrao Factory Method. `ContratacaoFrete` e o Creator, com o metodo `contratar` escrito uma unica vez, e cada modalidade tem seu Creator concreto.
